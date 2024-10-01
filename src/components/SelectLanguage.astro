@@ -1,0 +1,19 @@
+---
+import { LANGUAGES, getLangFromUrl, getLocalizedPathname, type UiType } from '../i18n/utils';
+
+const currentLang = getLangFromUrl(Astro.url);
+---
+
+<div>
+  {Object.entries(LANGUAGES).map(([key, label]) => (
+    <a href={getLocalizedPathname(Astro.url.pathname, key as UiType)} class={currentLang === key ? 'active' : ''}>
+      {label}
+    </a>
+  ))}
+</div>
+
+<style>
+  .active {
+    text-decoration: underline;
+  }
+</style>

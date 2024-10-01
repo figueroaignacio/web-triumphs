@@ -1,0 +1,19 @@
+---
+import SelectLanguage from "../../components/SelectLanguage.astro";
+import Layout from "../../layouts/Layout.astro";
+
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  return ["en", "es"].map((lang) => {
+    return { params: { lang } };
+  });
+}
+---
+
+<Layout title="Hey" description="Hey" lang={lang}>
+  <SelectLanguage />
+</Layout>
